@@ -21,4 +21,15 @@ end
 
 def word_permutations(array)
   permutations = array.permutation.to_a
+  combinations(permutations)
+end
+
+def combinations(array_of_arrays)
+  i = 0
+  combos =[]
+  while i < array_of_arrays.length
+    combos << array_of_arrays[i].join('')
+    i += 1
+  end
+  combos
 end
