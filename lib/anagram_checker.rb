@@ -26,5 +26,15 @@ def word_file_into_array(file)
       word_list_array << line.split
     end
   end
-  word_list_array
+  sort_the_arrays(word_list_array)
+end
+
+def sort_the_arrays(array)
+  i = 0
+  sorted_word_in_array = []
+  while i < array.length
+    sorted_word_in_array << word_sorter(array[i][0])
+    i += 1
+  end
+  sorted_word_in_array
 end
