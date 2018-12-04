@@ -4,6 +4,7 @@ def main
   word_input
   puts "Please enter the file path"
   file_input
+  puts "Thanks for playing!"
 end
 
 def word_input(word=gets.chomp)
@@ -11,7 +12,6 @@ def word_input(word=gets.chomp)
 end
 
 def file_input(file = gets.chomp)
-  text_file_into_array(file)
 end
 
 def word_splitter(string)
@@ -22,6 +22,3 @@ end
 def word_permutations(array)
   permutations = array.permutation.to_a
 end
-
-
-main
