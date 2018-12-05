@@ -1,92 +1,49 @@
+require_relative 'word_file_organiser'
+require_relative 'single_word_organiser'
 class AnagramsChecker
+
+  def initialize(words_list=WordFileOrganiser.new, word=SingleWordOrganiser.new)
+    @words_list = words_list
+    @word = word
+  end
+
   def main
-    puts 'Please enter the word list file path'
-    file_input
-    puts 'Please enter the word to be checked'
-    word_input
+    @words_list.main
+    @word.main
+    matcher(@word.rearranged_word)
     puts 'Thanks for playing!'
   end
 
-  def file_input(file = gets.chomp)
-    validate_input(file)
-    word_file_into_array(file)
+  def printer(array)
+    if array.empty? || (array.length == 1 && array[0] = @word.initial_word)
+      puts "There are no anagrams of #{@word.initial_word} in your list"
+    else
+      i = 0
+      puts "The following are anagrams of #{@word.initial_word}:"
+      while i < array.length
+        puts array[i] if array[i] != @word.initial_word
+        i += 1
+      end
+    end
   end
-
-  def word_sorter(string)
-    string.split('').sort.join('').strip
-  end
-
-  def word_file_into_array(file)
-    @word_list_array = File.open(file).read.downcase.split(/\W+/)
-    sort_the_arrays(@word_list_array)
-  end
-
-  def sort_the_arrays(array)
+  private
+  def matched_words(index_of_words)
     i = 0
-    @sorted_word_in_array = []
-    while i < array.length
-      @sorted_word_in_array << word_sorter(array[i])
+    words = []
+    while i < index_of_words.length
+      words << @words_list.word_list_array[index_of_words[i]]
       i += 1
     end
-    @sorted_word_in_array
+    printer(words)
   end
-
   def matcher(word)
     i = 0
     matched_words_index = []
-    while i < @sorted_word_in_array.length
-      matched_words_index << i if word == @sorted_word_in_array[i]
+    while i < @words_list.sorted_word_in_array.length
+      matched_words_index << i if word == @words_list.sorted_word_in_array[i]
       i += 1
     end
     matched_words(matched_words_index)
   end
 
-  def printer(words)
-    if words.empty?
-      puts "There are no anagrams of #{@initial_word} in your list"
-    else
-      i = 0
-      puts "The following are anagrams of #{@initial_word}:"
-      while i < words.length
-        puts words[i] if words[i] != @initial_word
-        i += 1
-      end
-    end
-  end
-
-  private
-
-  def validate_input(input)
-    raise 'Please enter something next time' unless not_empty?(input)
-    raise 'Please enter a string next time' unless string?(input)
-  end
-
-  def not_empty?(input)
-    input != ''
-  end
-
-  def string?(input)
-    input.instance_of?(String)
-  end 
-
-  def matched_words(index_of_words)
-    i = 0
-    words = []
-    while i < index_of_words.length
-      words << @word_list_array[index_of_words[i]]
-      i += 1
-    end
-    printer(words)
-  end
-
-  def input_sorter(word)
-    rearranged_word = word_sorter(word)
-    matcher(rearranged_word)
-  end
-
-  def word_input(word = gets.chomp.downcase)
-    validate_input(word)
-    @initial_word = word
-    input_sorter(word)
-  end
 end

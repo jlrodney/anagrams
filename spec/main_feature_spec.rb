@@ -1,6 +1,6 @@
 require 'anagram_checker'
 
-describe 'main' do\
+describe 'main' do
   it 'should print the instructions and say there are no anagrams for hel' do
     allow_any_instance_of(Object).to receive(:gets).and_return('hel')
     checker = AnagramsChecker.new
