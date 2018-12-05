@@ -7,4 +7,16 @@ describe 'file input' do
       %w[eht ehllo eilnst fo adn ot a in for]
     )
   end
+
+  it 'should throw an error "Please enter something next time"' do
+    checker = AnagramsChecker.new
+    expect { checker.file_input('')}. to raise_error\
+      'Please enter something next time'
+  end
+
+  it 'should throw an error "Please enter something next time"' do
+    checker = AnagramsChecker.new
+    expect { checker.file_input(Object.new)}. to raise_error\
+      'Please enter a string next time'
+  end
 end

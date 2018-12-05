@@ -8,6 +8,7 @@ class AnagramsChecker
   end
 
   def file_input(file = gets.chomp)
+    validate_input(file)
     word_file_into_array(file)
   end
 
@@ -55,6 +56,19 @@ class AnagramsChecker
 
   private
 
+  def validate_input(input)
+    raise 'Please enter something next time' unless not_empty?(input)
+    raise 'Please enter a string next time' unless string?(input)
+  end
+
+  def not_empty?(input)
+    input != ''
+  end
+
+  def string?(input)
+    input.instance_of?(String)
+  end 
+
   def matched_words(index_of_words)
     i = 0
     words = []
@@ -71,6 +85,7 @@ class AnagramsChecker
   end
 
   def word_input(word = gets.chomp.downcase)
+    validate_input(word)
     @initial_word = word
     input_sorter(word)
   end
