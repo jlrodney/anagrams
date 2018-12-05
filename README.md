@@ -44,7 +44,8 @@ $ rspec
 ```
 
 An example is shown below
-![](https://github.com/jlrodney/anagrams/example.png)
+
+![](https://github.com/jlrodney/anagrams/blob/master/example.png)
 
 
 ## Further Work to be done on this project
