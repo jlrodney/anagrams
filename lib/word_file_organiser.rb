@@ -1,10 +1,11 @@
 class WordFileOrganiser
   attr_reader :sorted_word_in_array, :word_list_array
 
-  def initialize()
+  def initialize
     @sorted_word_in_array = []
     @word_list_array = []
   end
+
   def main
     puts 'Please enter the word list file path'
     file_input
@@ -34,6 +35,7 @@ class WordFileOrganiser
   end
 
   private
+
   def validate_input(input)
     raise 'Please enter something next time' unless not_empty?(input)
     raise 'Please enter a string next time' unless string?(input)

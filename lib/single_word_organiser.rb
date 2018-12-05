@@ -1,4 +1,3 @@
-
 class SingleWordOrganiser
   attr_reader :initial_word, :rearranged_word
 
@@ -21,7 +20,9 @@ class SingleWordOrganiser
     @initial_word = word
     input_sorter(word)
   end
+
   private
+
   def validate_input(input)
     raise 'Please enter something next time' unless not_empty?(input)
     raise 'Please enter a string next time' unless string?(input)
@@ -38,5 +39,4 @@ class SingleWordOrganiser
   def input_sorter(word)
     @rearranged_word = word_sorter(word)
   end
-
 end

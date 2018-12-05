@@ -49,10 +49,8 @@ $ rspec
 
 
 ## Further Work to be done on this project
-- Try this exercise in a compiled language such as C, C# or Java.
-- Instead of using of storing the words list into an array and then looping through the array. I could use
-- Should negative balance be allowed
-- Should the user input the date
+- Try this exercise in a compiled language such as C, C# or Java. This should speed up the process by not having to repeat some of the checking for each loop. 
+- Instead of using of storing the words list into an array and then looping through the array. I could use a hash pair with each letter of the alphabet assigned to the first 26 prime numbers. This would mean that for each word there would be only one number associated with it (as the prime numbers are multiplied together). We could then scan through the hash of words and their associated values quickly to find matches.
 
 User stories
 -------------

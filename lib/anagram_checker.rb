@@ -1,8 +1,8 @@
 require_relative 'word_file_organiser'
 require_relative 'single_word_organiser'
 class AnagramsChecker
-
-  def initialize(words_list=WordFileOrganiser.new, word=SingleWordOrganiser.new)
+  def initialize(words_list = WordFileOrganiser.new,
+                 word = SingleWordOrganiser.new)
     @words_list = words_list
     @word = word
   end
@@ -15,10 +15,10 @@ class AnagramsChecker
   end
 
   def printer(array)
-    if array.empty? || (array.length == 1 && array[0] = @word.initial_word)
+    i = 0
+    if array.empty? || (array.length == 1 && array[0] == @word.initial_word)
       puts "There are no anagrams of #{@word.initial_word} in your list"
     else
-      i = 0
       puts "The following are anagrams of #{@word.initial_word}:"
       while i < array.length
         puts array[i] if array[i] != @word.initial_word
@@ -26,7 +26,9 @@ class AnagramsChecker
       end
     end
   end
+
   private
+
   def matched_words(index_of_words)
     i = 0
     words = []
@@ -36,6 +38,7 @@ class AnagramsChecker
     end
     printer(words)
   end
+
   def matcher(word)
     i = 0
     matched_words_index = []
@@ -45,5 +48,4 @@ class AnagramsChecker
     end
     matched_words(matched_words_index)
   end
-
 end

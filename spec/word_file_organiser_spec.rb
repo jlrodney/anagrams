@@ -1,16 +1,16 @@
 require 'word_file_organiser'
 
 describe 'file input' do
-
   it 'should print a message' do
     allow_any_instance_of(Object).to receive(:gets).and_return('listen')
     list = WordFileOrganiser.new
-    expect{ list.main }.to output("Please enter the word list file path\n").to_stdout
+    expect { list.main }.to output(
+      "Please enter the word list file path\n"
+    ).to_stdout
   end
 end
 
 describe 'main methods' do
-
   it 'should sort each word in the array in alphabetical order' do
     list = WordFileOrganiser.new
     expect(list.sort_the_arrays(%w[hello world amazing])).to eq(
@@ -32,13 +32,13 @@ describe 'main methods' do
 
   it 'should throw an error "Please enter a string next time' do
     list = WordFileOrganiser.new
-    expect { list.file_input(Object.new)}. to raise_error\
+    expect { list.file_input(Object.new) }. to raise_error\
       'Please enter a string next time'
   end
 
   it 'should throw an error "Please enter something next time' do
     list = WordFileOrganiser.new
-    expect { list.file_input('')}. to raise_error\
+    expect { list.file_input('') }. to raise_error\
       'Please enter something next time'
   end
 
@@ -48,5 +48,4 @@ describe 'main methods' do
       %w[eht ehllo eilnst fo adn ot a in for]
     )
   end
-
 end
