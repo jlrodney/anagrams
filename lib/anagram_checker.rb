@@ -16,12 +16,7 @@ class AnagramsChecker
   end
 
   def word_file_into_array(file)
-    @word_list_array = []
-    File.open(file) do |f|
-      f.each_line do |line|
-        @word_list_array << line.split
-      end
-    end
+    @word_list_array = File.open(file).read.downcase.split(/\W+/)
     sort_the_arrays(@word_list_array)
   end
 
@@ -29,7 +24,7 @@ class AnagramsChecker
     i = 0
     @sorted_word_in_array = []
     while i < array.length
-      @sorted_word_in_array << word_sorter(array[i][0])
+      @sorted_word_in_array << word_sorter(array[i])
       i += 1
     end
     @sorted_word_in_array
@@ -52,7 +47,7 @@ class AnagramsChecker
       i = 0
       puts "The following are anagrams of #{@initial_word}:"
       while i < words.length
-        puts words[i] if words[i] != [@initial_word]
+        puts words[i] if words[i] != @initial_word
         i += 1
       end
     end
@@ -75,11 +70,8 @@ class AnagramsChecker
     matcher(rearranged_word)
   end
 
-  def word_input(word = gets.chomp)
+  def word_input(word = gets.chomp.downcase)
     @initial_word = word
     input_sorter(word)
   end
 end
-# 
-# checker = AnagramsChecker.new
-# checker.main
